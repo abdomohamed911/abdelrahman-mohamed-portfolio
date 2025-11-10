@@ -5,14 +5,20 @@ on:
     branches: [ main ]
   workflow_dispatch: {}
 
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
 jobs:
   build-deploy:
     runs-on: ubuntu-latest
 
     steps:
       - uses: actions/checkout@v4
+        # allow later steps (actions-gh-pages) to use the automatically provided GITHUB_TOKEN
         with:
-          persist-credentials: false
+          persist-credentials: true
 
       - name: Use Node.js
         uses: actions/setup-node@v4
