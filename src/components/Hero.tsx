@@ -3,6 +3,14 @@ import { Button } from "./ui/button";
 import { ArrowRight, Github, Linkedin, Mail } from "lucide-react";
 
 export const Hero = () => {
+  const scrollToId = (id: string) => {
+    const el = document.getElementById(id);
+    if (el) {
+      el.scrollIntoView({ behavior: "smooth", block: "start" });
+      return true;
+    }
+    return false;
+  };
   const containerVariants = {
     hidden: { opacity: 0 },
     visible: {
@@ -65,6 +73,10 @@ export const Hero = () => {
           <Button
             size="lg"
             className="group bg-gradient-to-r from-primary to-secondary hover:shadow-[0_0_40px_rgba(0,200,255,0.5)] transition-all duration-300"
+            onClick={() => {
+              // Try to scroll to an Experience/Projects section; fallback to About
+              if (!scrollToId("experience")) scrollToId("about");
+            }}
           >
             View My Work
             <ArrowRight className="ml-2 group-hover:translate-x-1 transition-transform" />
@@ -73,6 +85,12 @@ export const Hero = () => {
             size="lg"
             variant="outline"
             className="glass-card border-primary/50 hover:bg-primary/10"
+            onClick={() => {
+              // Try to scroll to contact section; fallback to opening mail client
+              if (!scrollToId("contact")) {
+                window.location.href = "mailto:Abdelrahmanmohamed9112@gmail.com";
+              }
+            }}
           >
             Contact Me
           </Button>
