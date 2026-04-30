@@ -80,7 +80,7 @@ Key architectural decisions:
 ### Prerequisites
 
 - Node.js 18 or later
-- npm, yarn, or pnpm
+- npm 9 or later
 
 ### Installation
 
